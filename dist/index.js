@@ -94,7 +94,3 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
-// GET
-// user/v1/users/companies
-// Response:
-// [{"cif":"9330099","name":"AZNEFT IB"},{"cif":"6018199","name":"CRAG MMC"}]
