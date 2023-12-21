@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-
+import authRouter from './authRouter'
 const app: express.Application = express();
 
 app.use(cors());
-
+app.use(authRouter)
 const userData = [
   {
     personalCode: "1q2w3e4",
