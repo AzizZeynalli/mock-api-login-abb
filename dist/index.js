@@ -53,6 +53,18 @@ const companies = [
     { cif: "9232901", name: "Crocusoft MMC", asanId: "010191" },
 ];
 app.use(express_1.default.json());
+app.post('/auth/v1/mail/:username', (req, res) => {
+    const { username } = req.body;
+    console.log(username);
+    if (username === 'Sama') {
+        res.json({
+            email: 'sama@gmail.com'
+        });
+    }
+    else {
+        res.sendStatus(400);
+    }
+});
 app.post("/auth/v1/auth/login/asanimza", (req, res) => {
     const { asanId, phoneNumber } = req.body;
     const user = userData.find((u) => u.asanId === asanId && u.phoneNumber === phoneNumber);
