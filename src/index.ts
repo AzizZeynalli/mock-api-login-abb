@@ -1,11 +1,13 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import pin from './pin'
+import certificate from './certificates'
 const app: express.Application = express();
+app.use(cors());
 
 
 app.use(pin);
-app.use(cors());
+app.use(certificate);
 
 const userData = [
   {
