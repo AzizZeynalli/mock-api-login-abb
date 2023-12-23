@@ -34,7 +34,7 @@ const userData = [
 
 
 
-router.post("/onboarding-ms/v1/auth", (req: Request, res: Response) => {
+router.post("onboarding-ms/v1/auth", (req: Request, res: Response) => {
   const { asanId, phoneNumber } = req.body;
 
   const user = userData.find(

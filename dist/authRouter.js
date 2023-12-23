@@ -39,7 +39,7 @@ const userData = [
         userId: null,
     },
 ];
-router.post("/onboarding-ms/v1/auth", (req, res) => {
+router.post("onboarding-ms/v1/auth", (req, res) => {
     const { asanId, phoneNumber } = req.body;
     const user = userData.find((u) => u.asanId === asanId && u.phoneNumber === phoneNumber);
     console.log({ user, asanId, phoneNumber });
