@@ -16,12 +16,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const authRouter_1 = __importDefault(require("./authRouter"));
+// import authRouter from './authRouter'
 const pin_1 = __importDefault(require("./pin"));
 const app = (0, express_1.default)();
 app.use(pin_1.default);
 app.use((0, cors_1.default)());
-app.use("/", authRouter_1.default);
+// app.use("/",authRouter)
 const userData = [
     {
         personalCode: "1q2w3e4",
@@ -58,6 +58,18 @@ const companies = [
 ];
 app.use(express_1.default.json());
 app.post("/auth/v1/auth/login/asanimza", (req, res) => {
+    const { asanId, phoneNumber } = req.body;
+    const user = userData.find((u) => u.asanId === asanId && u.phoneNumber === phoneNumber);
+    console.log({ user, asanId, phoneNumber });
+    if (user) {
+        const { phoneNumber, asanId } = user, rest = __rest(user, ["phoneNumber", "asanId"]);
+        res.json(rest);
+    }
+    else {
+        res.status(404).send({ error: "User not found" });
+    }
+});
+app.post("/onboarding-ms/v1/auth", (req, res) => {
     const { asanId, phoneNumber } = req.body;
     const user = userData.find((u) => u.asanId === asanId && u.phoneNumber === phoneNumber);
     console.log({ user, asanId, phoneNumber });

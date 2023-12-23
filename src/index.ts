@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 
-import authRouter from './authRouter'
+// import authRouter from './authRouter'
 
 import pin from './pin'
 
@@ -10,7 +10,7 @@ const app: express.Application = express();
 
 app.use(pin);
 app.use(cors());
-app.use("/",authRouter)
+// app.use("/",authRouter)
 const userData = [
   {
     personalCode: "1q2w3e4",
@@ -63,6 +63,25 @@ app.post("/auth/v1/auth/login/asanimza", (req: Request, res: Response) => {
     res.status(404).send({ error: "User not found" });
   }
 });
+
+
+app.post("/onboarding-ms/v1/auth", (req: Request, res: Response) => {
+  const { asanId, phoneNumber } = req.body;
+
+  const user = userData.find(
+    (u) => u.asanId === asanId && u.phoneNumber === phoneNumber
+  );
+  console.log({ user, asanId, phoneNumber });
+  if (user) {
+    const { phoneNumber, asanId, ...rest } = user;
+    res.json(rest);
+  } else {
+    res.status(404).send({ error: "User not found" });
+  }
+});
+
+
+
 
 app.get(
   "/auth/v1/auth/check-status/asanimza",
