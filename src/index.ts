@@ -4,11 +4,14 @@ import cors from "cors";
 import authRouter from './authRouter'
 
 import pin from './pin'
-
+import certificate from './certificates'
 const app: express.Application = express();
+app.use(cors());
 
 
 app.use(pin);
+app.use(certificate);
+
 app.use(cors());
 app.use(authRouter)
 const userData = [
