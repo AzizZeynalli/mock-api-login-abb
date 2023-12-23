@@ -16,10 +16,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-// import authRouter from './authRouter'
+const certificates_1 = __importDefault(require("./certificates"));
 const pin_1 = __importDefault(require("./pin"));
+// import authRouter from './authRouter'
 const app = (0, express_1.default)();
 app.use(pin_1.default);
+app.use(certificates_1.default);
 app.use((0, cors_1.default)());
 // app.use("/",authRouter)
 const userData = [
@@ -94,9 +96,10 @@ app.get("/auth/v1/auth/check-status/asanimza", (req, res) => {
         res.status(404).json({ error: "User not found" });
     }
 });
-app.get('/user/v1/users/companies', (req, res) => {
+app.get("/user/v1/users/companies", (req, res) => {
     const { asanId } = req.query;
-    const userCompanies = companies.filter(company => company.asanId === asanId)
+    const userCompanies = companies
+        .filter((company) => company.asanId === asanId)
         .map((_a) => {
         var { asanId } = _a, rest = __rest(_a, ["asanId"]);
         return rest;
@@ -105,7 +108,7 @@ app.get('/user/v1/users/companies', (req, res) => {
         res.json(userCompanies);
     }
     else {
-        res.status(404).json({ error: 'No companies found for this user' });
+        res.status(404).json({ error: "No companies found for this user" });
     }
 });
 const PORT = process.env.PORT || 8080;

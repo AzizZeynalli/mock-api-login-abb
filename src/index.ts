@@ -1,14 +1,15 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import certifactes from './certificates'
+import pin from "./pin";
 
 // import authRouter from './authRouter'
 
-import pin from './pin'
 
 const app: express.Application = express();
 
-
 app.use(pin);
+app.use(certifactes);
 app.use(cors());
 // app.use("/",authRouter)
 const userData = [
@@ -64,7 +65,6 @@ app.post("/auth/v1/auth/login/asanimza", (req: Request, res: Response) => {
   }
 });
 
-
 app.post("/onboarding-ms/v1/auth", (req: Request, res: Response) => {
   const { asanId, phoneNumber } = req.body;
 
@@ -79,9 +79,6 @@ app.post("/onboarding-ms/v1/auth", (req: Request, res: Response) => {
     res.status(404).send({ error: "User not found" });
   }
 });
-
-
-
 
 app.get(
   "/auth/v1/auth/check-status/asanimza",
@@ -98,17 +95,18 @@ app.get(
     }
   }
 );
-app.get('/user/v1/users/companies', (req: Request, res: Response) => {
-    const { asanId } = req.query;
+app.get("/user/v1/users/companies", (req: Request, res: Response) => {
+  const { asanId } = req.query;
 
-    const userCompanies = companies.filter(company => company.asanId === asanId)
-                                   .map(({ asanId, ...rest }) => rest);
+  const userCompanies = companies
+    .filter((company) => company.asanId === asanId)
+    .map(({ asanId, ...rest }) => rest);
 
-    if (userCompanies.length > 0) {
-        res.json(userCompanies);
-    } else {
-        res.status(404).json({ error: 'No companies found for this user' });
-    }
+  if (userCompanies.length > 0) {
+    res.json(userCompanies);
+  } else {
+    res.status(404).json({ error: "No companies found for this user" });
+  }
 });
 
 const PORT = process.env.PORT || 8080;
