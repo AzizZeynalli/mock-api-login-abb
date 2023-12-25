@@ -50,6 +50,19 @@ const companies = [
 
 app.use(express.json());
 
+
+app.post('/auth/v1/mail/:username', (req: Request, res: Response)=>{
+  const {username} = req.body;
+  console.log(username);
+  if(username === 'Sama'){
+    res.json({
+      email: 'sama@gmail.com'
+    });
+  }else{
+    res.sendStatus(400)
+  }
+})
+
 app.post("/auth/v1/auth/login/asanimza", (req: Request, res: Response) => {
   const { asanId, phoneNumber } = req.body;
 

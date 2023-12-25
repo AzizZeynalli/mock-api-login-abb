@@ -1,0 +1,6 @@
+POST http://localhost:8080/auth/v1/mail/Sama
+content-type: application/json
+
+{
+    "username": "Sama"
+}
