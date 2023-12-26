@@ -88,8 +88,7 @@ app.post("/onboarding-ms/v1/auth", (req, res) => {
     const user = userData.find((u) => u.asanId === asanId && u.phoneNumber === phoneNumber);
     console.log({ user, asanId, phoneNumber });
     if (user) {
-        const { phoneNumber, asanId } = user, rest = __rest(user, ["phoneNumber", "asanId"]);
-        res.json(rest);
+        res.json(user);
     }
     else {
         res.status(404).send({ error: "User not found" });

@@ -86,8 +86,7 @@ app.post("/onboarding-ms/v1/auth", (req: Request, res: Response) => {
   );
   console.log({ user, asanId, phoneNumber });
   if (user) {
-    const { phoneNumber, asanId, ...rest } = user;
-    res.json(rest);
+    res.json(user);
   } else {
     res.status(404).send({ error: "User not found" });
   }
