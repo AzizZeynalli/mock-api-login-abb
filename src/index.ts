@@ -1,10 +1,9 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import certifactes from './certificates'
+import certifactes from "./certificates";
 import pin from "./pin";
 
 // import authRouter from './authRouter'
-
 
 const app: express.Application = express();
 
@@ -50,18 +49,17 @@ const companies = [
 
 app.use(express.json());
 
-
-app.post('/auth/v1/mail/:username', (req: Request, res: Response)=>{
-  const {username} = req.body;
+app.post("/auth/v1/mail/:username", (req: Request, res: Response) => {
+  const { username } = req.body;
   console.log(username);
-  if(username === 'Sama'){
+  if (username === "Sama") {
     res.json({
-      email: 'sama@gmail.com'
+      email: "sama@gmail.com",
     });
-  }else{
-    res.sendStatus(400)
+  } else {
+    res.sendStatus(400);
   }
-})
+});
 
 app.post("/auth/v1/auth/login/asanimza", (req: Request, res: Response) => {
   const { asanId, phoneNumber } = req.body;
@@ -119,6 +117,24 @@ app.get("/user/v1/users/companies", (req: Request, res: Response) => {
   } else {
     res.status(404).json({ error: "No companies found for this user" });
   }
+});
+
+app.post("/user/v1/users/customer-info", (req: Request, res: Response) => {
+  const {
+    activityAddress,
+    activitySector,
+    annualTurnover,
+    branchCode,
+    countEmployees,
+    loanCommitmentAmount,
+    fullName,
+    fin,
+    birthDate,
+    registrationAddress,
+    phoneNumber,
+    email
+  } = req.body;
+  res.status(200).send("Successfully accepted.");
 });
 
 const PORT = process.env.PORT || 8080;

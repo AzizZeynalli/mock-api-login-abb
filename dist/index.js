@@ -59,12 +59,12 @@ const companies = [
     { cif: "9232901", name: "Crocusoft MMC", asanId: "010191" },
 ];
 app.use(express_1.default.json());
-app.post('/auth/v1/mail/:username', (req, res) => {
+app.post("/auth/v1/mail/:username", (req, res) => {
     const { username } = req.body;
     console.log(username);
-    if (username === 'Sama') {
+    if (username === "Sama") {
         res.json({
-            email: 'sama@gmail.com'
+            email: "sama@gmail.com",
         });
     }
     else {
@@ -121,6 +121,10 @@ app.get("/user/v1/users/companies", (req, res) => {
     else {
         res.status(404).json({ error: "No companies found for this user" });
     }
+});
+app.post("/user/v1/users/customer-info", (req, res) => {
+    const { activityAddress, activitySector, annualTurnover, branchCode, countEmployees, loanCommitmentAmount, fullName, fin, birthDate, registrationAddress, phoneNumber, email } = req.body;
+    res.status(200).send("Successfully accepted.");
 });
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
