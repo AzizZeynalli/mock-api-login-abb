@@ -40,21 +40,14 @@ const userData = [
         asanId: "020292",
         phoneNumber: "+994500000046",
         userId: null,
-    },
-    {
-        personalCode: "dnd33s3",
-        verificationCode: "2054",
-        sid: "574874fjfjfffffd",
-        asanId: "030393",
-        phoneNumber: "+994500000047",
-        userId: null,
-    },
+    }
 ];
 const users = [
     {
-        phoneNumber: "1234567890",
+        phoneNumber: "+9947034567890",
         voen: "987654321",
         pin: "1234",
+        asanId: "010191",
         name: "John",
         surname: "Doe",
         patronymic: "Smith",
@@ -66,9 +59,10 @@ const users = [
         }
     },
     {
-        phoneNumber: "0987654321",
+        phoneNumber: "+9947787654321",
         voen: "123456789",
         pin: "5678",
+        asanId: "020292",
         name: "Jane",
         surname: "Salmon",
         patronymic: "Simit",
@@ -156,8 +150,8 @@ app.post("/user/v1/users/customer-info", (req, res) => {
     const { activityAddress, activitySector, annualTurnover, branchCode, countEmployees, loanCommitmentAmount, fullName, fin, birthDate, registrationAddress, phoneNumber, email } = req.body;
     res.status(200).send("Successfully accepted.");
 });
-app.get("/user/v1/users/personal-info/:phoneNumber", (req, res) => {
-    const user = users.find(user => user.phoneNumber === req.params.phoneNumber);
+app.get("/user/v1/users/personal-info/:asanid", (req, res) => {
+    const user = users.find(user => user.asanId === req.params.asanid);
     if (user) {
         res.json(user);
     }
