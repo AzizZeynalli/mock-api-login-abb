@@ -9,8 +9,8 @@ const mockData = [
     {
         "certificateId": "2",
         "pinCode": "13RXZ1K",
-        "firstname": "VUGAR",
-        "lastname": "HAMZAYEV",
+        "firstname": "RUFAT",
+        "lastname": "AKBAROV",
         "organizationCode": "1904973092",
         "organizationName": "VUGAR",
         "existWithThisNumber": false,
