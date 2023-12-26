@@ -38,6 +38,37 @@ const userData = [
   },
 ];
 
+const users =[
+  {
+    phoneNumber: "1234567890",
+    voen: "987654321",
+    pin: "1234",
+    name: "John",
+    surname: "Doe",
+    patronymic: "Smith",
+    birthDate: "1980-01-01",
+    registrationAddress: {
+      city: "New York",
+      country: "USA",
+      street: "Broadway"
+    }
+  },
+  {
+    phoneNumber: "0987654321",
+    voen: "123456789",
+    pin: "5678",
+    name: "Jane",
+    surname: "Salmon",
+    patronymic: "Simit",
+    birthDate: "1985-01-01",
+    registrationAddress: {
+      city: "Los Angeles",
+      country: "USA",
+      street: "Hollywood"
+    }
+  }
+];
+
 const companies = [
   { cif: "9330099", name: "AZNEFT IB", asanId: "030393" },
   { cif: "6018199", name: "CRAG MMC", asanId: "030393" },
@@ -135,6 +166,15 @@ app.post("/user/v1/users/customer-info", (req: Request, res: Response) => {
     email
   } = req.body;
   res.status(200).send("Successfully accepted.");
+});
+
+app.get("/user/v1/users/personal-info/:phoneNumber", (req: Request, res: Response) => {
+  const user = users.find(user => user.phoneNumber === req.params.phoneNumber);
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).json({ message: 'User not found' });
+  }
 });
 
 const PORT = process.env.PORT || 8080;
