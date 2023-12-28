@@ -75,7 +75,7 @@ const companies = [
 ];
 
 function getVerificationCode() {
-  return Math.floor(Math.random() * 4);
+  return Math.floor(Math.random() * 9000) + 1000;
 }
 
 app.use(express.json());

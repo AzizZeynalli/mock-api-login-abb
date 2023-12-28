@@ -85,7 +85,7 @@ const companies = [
     { cif: "9232901", name: "Crocusoft MMC", asanId: "010191" },
 ];
 function getVerificationCode() {
-    return Math.floor(Math.random() * 4);
+    return Math.floor(Math.random() * 9000) + 1000;
 }
 app.use(express_1.default.json());
 app.post("/auth/v1/mail/:username", (req, res) => {
