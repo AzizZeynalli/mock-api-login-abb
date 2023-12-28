@@ -148,7 +148,7 @@ app.get("/user/v1/users/companies", (req, res) => {
 });
 app.post("/user/v1/users/customer-info", (req, res) => {
     const { activityAddress, activitySector, annualTurnover, branchCode, countEmployees, loanCommitmentAmount, fullName, fin, birthDate, registrationAddress, phoneNumber, email } = req.body;
-    res.status(200).send("Successfully accepted.");
+    res.status(200).send("uccessfully accepted.");
 });
 app.get("/user/v1/users/personal-info/:asanid", (req, res) => {
     const user = users.find(user => user.asanId === req.params.asanid);
