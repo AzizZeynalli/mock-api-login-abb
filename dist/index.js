@@ -147,7 +147,7 @@ app.get("/user/v1/users/companies", (req, res) => {
     }
 });
 app.post("/user/v1/users/customer-info", (req, res) => {
-    const { activityAddress, activitySector, annualTurnover, branchCode, countEmployees, loanCommitmentAmount, fullName, fin, birthDate, registrationAddress, phoneNumber, email } = req.body;
+    const { activityAddress, activitySector, annualTurnover, branchCode, countEmployees, loanCommitmentAmount, name, surname, fin, birthDate, registrationAddress, phoneNumber, email } = req.body;
     res.status(200).send("successfully accepted.");
 });
 app.get("/user/v1/users/personal-info/:asanid", (req, res) => {
