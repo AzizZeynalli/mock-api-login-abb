@@ -159,7 +159,7 @@ app.post("/user/v1/users/customer-info", (req: Request, res: Response) => {
     phoneNumber,
     email
   } = req.body;
-  res.status(200).send("uccessfully accepted.");
+  res.status(200).send("successfully accepted.");
 });
 
 app.get("/user/v1/users/personal-info/:asanid", (req: Request, res: Response) => {
