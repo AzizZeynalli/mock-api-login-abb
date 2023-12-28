@@ -165,7 +165,7 @@ app.post("/user/v1/users/customer-info", (req, res) => {
     // Check if all required fields are present in req.body
     const missingField = requiredFields.find(field => !req.body[field]);
     if (missingField) {
-        return res.status(400).json({ error: `Missing required field: ${missingField}` });
+        return res.status(400).send({ error: `Missing required field: ${missingField}` });
     }
     // All required fields are present, continue processing
     // Extract values from req.body
