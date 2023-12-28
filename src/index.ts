@@ -158,13 +158,13 @@ app.post("/user/v1/users/customer-info", (req: Request, res: Response) => {
     "registrationAddress",
     "phoneNumber",
     "email"
-  ];
+];
 
   // Check if all required fields are present in req.body
   const missingField = requiredFields.find(field => !req.body[field]);
 
   if (missingField) {
-    return res.status(400).send(`Missing required field: ${missingField}`);
+    return res.status(400).json({ error: `Missing required field: ${missingField}` });
   }
 
   // All required fields are present, continue processing
@@ -204,3 +204,15 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
