@@ -74,6 +74,10 @@ const companies = [
   { cif: "9232901", name: "Crocusoft MMC", asanId: "010191" },
 ];
 
+function getVerificationCode() {
+  return Math.floor(Math.random() * 4);
+}
+
 app.use(express.json());
 
 app.post("/auth/v1/mail/:username", (req: Request, res: Response) => {
@@ -201,6 +205,10 @@ app.get("/user/v1/users/personal-info/:asanid", (req: Request, res: Response) =>
     res.status(404).json({ message: 'User not found' });
   }
 });
+
+app.get("/user/v1/users/verification", (req: Request, res: Response) => {
+  res.json({code: getVerificationCode()}); 
+})
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

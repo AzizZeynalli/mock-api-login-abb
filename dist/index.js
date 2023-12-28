@@ -84,6 +84,9 @@ const companies = [
     { cif: "4021941", name: "Azercosmos", asanId: "010191" },
     { cif: "9232901", name: "Crocusoft MMC", asanId: "010191" },
 ];
+function getVerificationCode() {
+    return Math.floor(Math.random() * 4);
+}
 app.use(express_1.default.json());
 app.post("/auth/v1/mail/:username", (req, res) => {
     const { username } = req.body;
@@ -183,6 +186,9 @@ app.get("/user/v1/users/personal-info/:asanid", (req, res) => {
     else {
         res.status(404).json({ message: 'User not found' });
     }
+});
+app.get("/user/v1/users/verification", (req, res) => {
+    res.json({ code: getVerificationCode() });
 });
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
