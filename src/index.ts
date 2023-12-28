@@ -143,8 +143,32 @@ app.get("/user/v1/users/companies", (req: Request, res: Response) => {
     res.status(404).json({ error: "No companies found for this user" });
   }
 });
-
 app.post("/user/v1/users/customer-info", (req: Request, res: Response) => {
+  const requiredFields = [
+    "activityAddress",
+    "activitySector",
+    "annualTurnover",
+    "branchCode",
+    "countEmployees",
+    "loanCommitmentAmount",
+    "name",
+    "surname",
+    "fin",
+    "birthDate",
+    "registrationAddress",
+    "phoneNumber",
+    "email"
+  ];
+
+  // Check if all required fields are present in req.body
+  const missingField = requiredFields.find(field => !req.body[field]);
+
+  if (missingField) {
+    return res.status(400).send(`Missing required field: ${missingField}`);
+  }
+
+  // All required fields are present, continue processing
+  // Extract values from req.body
   const {
     activityAddress,
     activitySector,
@@ -160,8 +184,12 @@ app.post("/user/v1/users/customer-info", (req: Request, res: Response) => {
     phoneNumber,
     email
   } = req.body;
+
+  // Your processing logic here...
+
   res.status(200).send("successfully accepted.");
 });
+
 
 app.get("/user/v1/users/personal-info/:asanid", (req: Request, res: Response) => {
   const user = users.find(user => user.asanId === req.params.asanid);
